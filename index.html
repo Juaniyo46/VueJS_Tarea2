@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!--Css Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mt-5 bg-info" id="header">
+        <h1>Personas</h1>
+        <ul class="list-group">
+            <li v-for="persona in personas | sortBy 'edad' -1" class="list-group-item">
+                {{persona.nombre}}, {{persona.edad}}
+            </li>
+        </ul>
+
+        <h1 class="mt-5">Filtro OLD</h1>
+        <ul class="list-group">
+            <li v-for="persona in personas | old" class="list-group-item">
+                {{persona.nombre}}, {{persona.edad}}
+            </li>
+
+        </ul>
+    </div>
+
+
+
+
+
+
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@1.0.18/dist/vue.js"></script>
+    <script>
+
+        Vue.filter('old', function (personas) {
+            return personas.filter(function(item){
+                return item.edad > 50;
+            });
+          });
+
+        new Vue ({
+            el:'#header',
+            data:{
+                personas:[
+                    {
+                        nombre:"Raúl",
+                        edad: 21
+                    },
+                    {
+                        nombre:"Francisco",
+                        edad:21
+                    },
+                    {
+                        nombre:"Juan",
+                        edad:23
+                    },
+                    {
+                        nombre:"Pedro",
+                        edad:58
+                    },
+                    {
+                        nombre:"Ana",
+                        edad:18
+                    },
+                ]
+            }
+        })
+
+    </script>
+</html>
