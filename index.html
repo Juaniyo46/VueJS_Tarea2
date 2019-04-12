@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="container mt-5 bg-info" id="header">
+
         <h1>Personas</h1>
         <ul class="list-group">
             <li v-for="persona in personas | sortBy 'edad' -1" class="list-group-item">
@@ -24,8 +25,26 @@
             <li v-for="persona in personas | old" class="list-group-item">
                 {{persona.nombre}}, {{persona.edad}}
             </li>
-
         </ul>
+
+        <h2 class="mt-4">Busqueda por Nombre</h2>
+        <input type="text" v-model="query" class="form-control my-2" placeholder="Introduzca el nombre a buscar">
+        <ul class="list-group">
+            <li v-for="persona in personas | filterBy query in 'nombre' |" class="list-group-item">
+                {{persona.nombre}}, {{persona.edad}}
+
+            </li>
+        </ul>
+
+        <h2 class="mt-4">Busqueda Año</h2>
+        <input type="number" v-model="query2" class="form-control my-2" placeholder="Introduzca el nombre a buscar">
+        <ul class="list-group">
+            <li v-for="persona in personas | filterBy query2 in 'edad'" class="list-group-item">
+                {{persona.nombre}}, {{persona.edad}}
+
+            </li>
+        </ul>
+
     </div>
 
 
